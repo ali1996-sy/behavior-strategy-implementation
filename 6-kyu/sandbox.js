@@ -6,6 +6,46 @@ function tribonacci(signature,n){
   } 
   return (n < 3) ? signature.slice(0, n) : triFib;
 }
+function duplicateEncode(word){
+    let wor=[];
+    let text='';
+    let found=false;
+      for(let i=0;i<word.length;i++){
+        for(let j=0;j<word.length;j++){
+          if(word[i]===word[j]&&i!==j)
+        found=true;
+      }
+      if(found){
+         wor.push(')');}
+        else{
+         
+         wor.push('(');
+      }
+        found=false;
+      }
+    for(let value of wor){
+      text+=value;
+    }
+    return text;
+  }
+  function findMissingLetter(array)
+{
+  for(let i=0;i<array.length-1;i++){
+    if(array[i].charCodeAt(0)+1!==array[i+1].charCodeAt(0))return  String.fromCharCode(array[i].charCodeAt(0)+1)
+  }
+  return ' ';
+}
+  ////test////
+  describe("KataTests", function(){
+    it("exampleTests", function(){
+      Test.assertEquals(findMissingLetter(['a','b','c','d','f']), 'e');
+      Test.assertEquals(findMissingLetter(['O','Q','R','S']), 'P');
+    });
+  });
+  Test.assertEquals(duplicateEncode("din"),"(((");
+Test.assertEquals(duplicateEncode("recede"),"()()()");
+Test.assertEquals(duplicateEncode("(( @"),"))((");
+
 Test.describe("Basic tests",function(){
     Test.assertSimilar(tribonacci([1,1,1],10),[1,1,1,3,5,9,17,31,57,105])
     Test.assertSimilar(tribonacci([0,0,1],10),[0,0,1,1,2,4,7,13,24,44])
